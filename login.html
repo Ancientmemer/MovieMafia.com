@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | MovieMafia</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="email" id="login-email" placeholder="Email"><br>
+  <input type="password" id="login-password" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+
+  <h2>Sign Up</h2>
+  <input type="email" id="signup-email" placeholder="Email"><br>
+  <input type="password" id="signup-password" placeholder="Password"><br>
+  <button onclick="signUp()">Sign Up</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
+      authDomain: "moviemafiaauth.firebaseapp.com",
+      projectId: "moviemafiaauth",
+      storageBucket: "moviemafiaauth.firebasestorage.app",
+      messagingSenderId: "405195689093",
+      appId: "1:405195689093:web:880a5e30c175597e51edec"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.signUp = () => {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => alert("Sign-up successful!"))
+        .catch(error => alert("Error: " + error.message));
+    };
+
+    window.login = () => {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("Login successful!");
+          window.location.href = "home.html";
+        })
+        .catch(error => alert("Error: " + error.message));
+    };
+  </script>
+</body>
+</html>
