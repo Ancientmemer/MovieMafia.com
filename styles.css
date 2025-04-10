@@ -11,18 +11,18 @@ button {
 button.login,
 button.signup {
   background-color: skyblue;
-  color: white;
+  color: skyblue;
 }
 
 button.login:hover,
 button.signup:hover {
-  background-color: #0056b3;
+  background-color: skyblue;
 }
 
 /* Red-ish logout button */
 button.logout {
   background-color: red;
-  color: white;
+  color: red;
 }
 
 button.logout:hover {
