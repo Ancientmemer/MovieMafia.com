@@ -21,7 +21,7 @@ button.signup:hover {
 
 /* Red-ish logout button */
 button.logout {
-  background-color: #dc3545;
+  background-color: red;
   color: white;
 }
 
