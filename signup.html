@@ -6,10 +6,13 @@
   <title>Sign up | MovieMafia</title>
 </head>
 <body>
+<marquee>Welcome To Movie Mafia</marquee>
+<center>
   <h2>Sign Up</h2>
-  <input type="email" id="signup-email" placeholder="Email"><br>
-  <input type="password" id="signup-password" placeholder="Password"><br>
-  <button onclick="signUp()">Sign Up</button>
+<b>E-mail</b> <input type="email" id="signup-email" placeholder="Email"><br><br>
+<b>Password</b> <input type="password" id="signup-password" placeholder="Password"><br><br>
+  <button onclick="signUp()">Sign Up</button><br><br>
+</center>
 
     <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
@@ -38,5 +41,6 @@
         .catch(error => alert("Error: " + error.message));
     };
   </script>
+  <A href="login.html">I already have an account</A>
 </body>
 </html>
