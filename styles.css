@@ -1,0 +1,30 @@
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Blue style for login & signup */
+button.login,
+button.signup {
+  background-color: #007bff;
+  color: white;
+}
+
+button.login:hover,
+button.signup:hover {
+  background-color: #0056b3;
+}
+
+/* Red-ish logout button */
+button.logout {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.logout:hover {
+  background-color: #c82333;
+}
