@@ -10,7 +10,7 @@ button {
 /* Blue style for login & signup */
 button.login,
 button.signup {
-  background-color: #007bff;
+  background-color: skyblue;
   color: white;
 }
 
@@ -26,5 +26,5 @@ button.logout {
 }
 
 button.logout:hover {
-  background-color: #c82333;
+  background-color: red;
 }
