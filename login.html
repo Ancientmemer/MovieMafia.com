@@ -5,43 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <title>Login | MovieMafia</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 <body>
 <marquee>Welcome To Movie Mafia</marquee>
 <center>
-  <h2>Login</h2>
-<b>E-mail</b> <input type="email" id="login-email" placeholder="Email"><br><br>
-<b>Password</b> <input type="password" id="login-password" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
+<h2>Login</h2>
+<input type="text" id="loginUsername" placeholder="Username">
+<input type="password" id="loginPassword" placeholder="Password">
+<button onclick="logIn()">Log In</button>
 </center>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+ <script>
+    const supabase = supabase.createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_KEY');
+   
+  async function logIn() {
+  const username = document.getElementById("loginUsername").value;
+  const password = document.getElementById("loginPassword").value;
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
-      authDomain: "moviemafiaauth.firebaseapp.com",
-      projectId: "moviemafiaauth",
-      storageBucket: "moviemafiaauth.firebasestorage.app",
-      messagingSenderId: "405195689093",
-      appId: "1:405195689093:web:880a5e30c175597e51edec"
-    };
+  // Step 1: Get email from username
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("email")
+    .eq("username", username)
+    .single();
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  if (error || !data) return alert("Username not found.");
 
-    window.login = () => {
-      const email = document.getElementById("login-email").value;
-      const password = document.getElementById("login-password").value;
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("Login successful!");
-          window.location.href = "index.html";
-        })
-        .catch(error => alert("Error: " + error.message));
-    };
+  // Step 2: Login with email
+  const { error: loginError } = await supabase.auth.signInWithPassword({
+    email: data.email,
+    password,
+  });
+
+  if (loginError) {
+    alert(loginError.message);
+  } else {
+    alert("Login successful!");
+  }
+  }
   </script>
+  
   <center><b>Don't you have an account?</b><A href="signup.html">Sign up</A></center>
 </body>
 </html>
