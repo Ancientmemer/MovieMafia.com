@@ -4,35 +4,18 @@
 <body>
   <button onclick="logout()">Logout</button>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const supabase = supabase.createClient('https://rinvgyegukgickkusfzk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpbnZneWVndWtnaWNra3VzZnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1NDQ5NzMsImV4cCI6MjA2MDEyMDk3M30.XShV5jBBsEx-ynt9-HON6zfW1qiXwtGm0QwnmvqTjlg');
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
-      authDomain: "moviemafiaauth.firebaseapp.com",
-      projectId: "moviemafiaauth",
-      storageBucket: "moviemafiaauth.firebasestorage.app",
-      messagingSenderId: "405195689093",
-      appId: "1:405195689093:web:880a5e30c175597e51edec"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Check if user is logged in
-    onAuthStateChanged(auth, user => {
-      if (!user) {
-        window.location.href = "login.html";
-      }
-    });
-
-    window.logout = () => {
-      signOut(auth).then(() => {
-        alert("Logged out!");
-        window.location.href = "login.html";
-      });
-    };
+  async function logout() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      alert(error.message);
+    } else {
+      window.location.href = "login.html";
+    }
+  }
 </script>
 <marquee>Movie Mafia</marquee>
 <img src="assets/moviemafia.jpg" alt="Movie Mafia Poster" width="100%" height="50%">
