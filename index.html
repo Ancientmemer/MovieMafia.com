@@ -2,40 +2,77 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Mafia</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <title>MovieMafia - Home</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <!-- Firebase Configuration -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
+      authDomain: "moviemafiaauth.firebaseapp.com",
+      projectId: "moviemafiaauth",
+      storageBucket: "moviemafiaauth.firebasestorage.app",
+      messagingSenderId: "405195689093",
+      appId: "1:405195689093:web:880a5e30c175597e51edec",
+      measurementId: "G-CY2PLKGR2V"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <!-- Styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    .red-btn {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-  <button id="logout-btn">Logout</button>
+  <h1>Welcome to MovieMafia</h1>
+  <button class="red-btn" onclick="logout()">Logout</button>
 
-  <marquee>Movie Mafia</marquee>
-  <img src="assets/moviemafia.jpg" alt="Movie Mafia Poster" width="100%" height="50%">
-
+  <!-- Logout Script -->
   <script>
-    const supabaseUrl = 'https://irnvgexgukgicksufzk.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZCI6InJpbmZneGV4Z3Vra2lja3N1ZnprIiwicm9sZSI6InB1YmxpYyIsImlhdCI6MTcxMjg1NzE5MCwiZXhwIjoxMDMwNDI0MzE5MH0.v8Oxf9JQ9fHJhMLZcH7SLMD4bcONRY0PRAU1Riyr2Ug';
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        alert("Logged out!");
+        window.location.href = "login.html";
+      }).catch((error) => {
+        alert("Error logging out: " + error.message);
+      });
+    }
 
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-    document.getElementById('logout-btn').addEventListener('click', async () => {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        alert('Logout failed: ' + error.message);
-      } else {
-        window.location.href = 'login.html';
+    // Optional: Check if user is not logged in and redirect
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
       }
     });
-
-    // Optional: Redirect to login if user is not logged in
-    (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        window.location.href = 'login.html';
-      }
-    })();
   </script>
-
+  <marquee>Welcome To Stream Elite</marquee>
+<p>This site is under maintainance work.</p>
 </body>
 </html>
