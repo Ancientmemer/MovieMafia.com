@@ -1,80 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <style>
     body {
-      font-family: Arial;
-      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      margin: 0;
     }
-    input, button {
-      margin: 10px;
+    h2 {
+      color: #333;
+    }
+    input {
       padding: 10px;
+      margin: 8px;
       width: 250px;
-      border-radius: 5px;
       border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
     }
     button {
-      background-color: #007BFF;
-      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
+      margin-top: 10px;
     }
-    button:hover {
-      background-color: #0056b3;
+    .blue-btn {
+      background-color: #2196F3;
+      color: white;
     }
   </style>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
+      authDomain: "moviemafiaauth.firebaseapp.com",
+      projectId: "moviemafiaauth",
+      storageBucket: "moviemafiaauth.firebasestorage.app",
+      messagingSenderId: "405195689093",
+      appId: "1:405195689093:web:880a5e30c175597e51edec",
+      measurementId: "G-CY2PLKGR2V"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
+  <h2>Signup</h2>
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Password" />
+  <button class="blue-btn" onclick="signup()">Signup</button>
 
-  <h2>Sign Up</h2>
-  <input type="text" id="username" placeholder="Username" required />
-  <input type="email" id="email" placeholder="Email" required />
-  <input type="password" id="password" placeholder="Password" required />
-  <button onclick="signup()">Sign Up</button>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script>
-    const supabase = supabase.createClient(
-      'https://rinvgyegukgickkusfzk.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpbnZneWVndWtnaWNra3VzZnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1NDQ5NzMsImV4cCI6MjA2MDEyMDk3M30.XShV5jBBsEx-ynt9-HON6zfW1qiXwtGm0QwnmvqTjlg'
-    );
-
-    async function signup() {
-      const username = document.getElementById('username').value;
+    function signup() {
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-
-      // Step 1: Sign up with Supabase Auth
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password
-      });
-
-      if (error) {
-        alert('Signup failed: ' + error.message);
-        return;
-      }
-
-      // Step 2: Store username in `profiles` table
-      const user = data.user;
-
-      const { error: profileError } = await supabase
-        .from('profiles')
-        .insert([{ id: user.id, username: username, email: email }]);
-
-      if (profileError) {
-        alert('Error saving username: ' + profileError.message);
-      } else {
-        alert('Sign up successful! Redirecting to login page...');
-        window.location.href = "login.html";
-      }
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Signup successful!");
+          window.location.href = "login.html";
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     }
   </script>
 <center>Already have an Account?<A href="login.html">Login</A></center>
