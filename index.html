@@ -18,27 +18,6 @@
     alert('Logout failed: ' + error.message);
   }
   }
-
-  async function fetchUsername() {
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (user) {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('username')
-        .eq('id', user.id)
-        .single();
-
-      if (!error && data) {
-        document.getElementById('welcomeMessage').textContent = `Welcome, ${data.username}!`;
-      }
-    } else {
-      // If no user is logged in, redirect to login page
-      window.location.href = 'login.html';
-    }
-  }
-
-  fetchUsername();
 </script>
 <marquee>Movie Mafia</marquee>
 <img src="assets/moviemafia.jpg" alt="Movie Mafia Poster" width="100%" height="50%">
