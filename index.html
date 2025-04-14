@@ -2,18 +2,18 @@
 <html>
 <head><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Movie Mafia</title><link rel="stylesheet" href="styles.css"></head>
 <body>
-  <button onclick="logout()">Logout</button>
+<button onclick="logout()">Logout</button>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
   const supabase = supabase.createClient('https://rinvgyegukgickkusfzk.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJpbnZneWVndWtnaWNra3VzZnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ1NDQ5NzMsImV4cCI6MjA2MDEyMDk3M30.XShV5jBBsEx-ynt9-HON6zfW1qiXwtGm0QwnmvqTjlg');
 
   async function logout() {
     const { error } = await supabase.auth.signOut();
-    if (error) {
-      alert(error.message);
-    } else {
+    if (!error) {
       window.location.href = "login.html";
+    } else {
+      alert("Logout error: " + error.message);
     }
   }
 </script>
