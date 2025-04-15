@@ -6,39 +6,74 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h2 {
-      color: #333;
-    }
-    input {
-      padding: 10px;
-      margin: 8px;
-      width: 250px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .blue-btn {
-      background-color: #2196F3;
-      color: white;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('assets/SE.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  width: 300px;
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.input-box {
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+.options a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #eee;
+}
   </style>
   <script>
     const firebaseConfig = {
@@ -54,11 +89,21 @@
   </script>
 </head>
 <body>
-  <img src="assets/SE.jpg width="200px" height="100px">
-  <h1>Stream Elite</h1>
-  <input type="email" id="email" placeholder="Email" />
-  <input type="password" id="password" placeholder="Password" />
-  <button class="blue-btn" onclick="login()">Login</button><br><br>
+  <div class="login-box">
+    <h2>Login</h2>
+    <form>
+      <div class="input-box">
+        <label>Email</label>
+        <input type="email" required />
+      </div>
+      <div class="input-box">
+        <label>Password</label>
+        <input type="password" required />
+      </div>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="signup.html">Register</a></p>
+    </form>
+  </div>
 
   <script>
     function login() {
