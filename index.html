@@ -35,21 +35,33 @@
     h1 {
       color: #333;
     }
-    .red-btn {
-      background-color: #f44336;
-      color: white;
-      padding: 10px 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 20px;
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
     }
   </style>
 </head>
 <body>
 
-  <button class="red-btn" onclick="logout()">Logout</button>
+  <div class="bottom-bar">
+  <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
 
   <!-- Logout Script -->
   <script>
