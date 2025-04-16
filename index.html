@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream Elite - Home</title>
+  <link rel="stylesheet" href="image-slider.css" />
   <!-- Styling -->
   <style>
     body {
@@ -94,71 +96,6 @@
     font-size: 12px;
   }
 }
-.slider-wrapper {
-  position: relative;
-  max-width: 100%;
-  margin: 20px auto;
-  overflow: hidden;
-}
-
-.slider-container {
-  overflow: hidden;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.card {
-  flex: 0 0 auto;
-  width: 200px;
-  margin: 0 10px;
-}
-
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 24px;
-  border-radius: 50%;
-}
-.nav.left { left: 10px; }
-.nav.right { right: 10px; }
-
-.pagination {
-  text-align: center;
-  margin-top: 10px;
-}
-.pagination span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 5px;
-  background: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-.pagination span.active {
-  background: #333;
-}
-
-@media (max-width: 768px) {
-  .card { width: 150px; }
-}
   </style>
 </head>
 <body>
@@ -200,23 +137,17 @@
       });
   });
 </script>
-<br><br><div class="slider-wrapper">
-  <button class="nav left" onclick="scrollSlider(-1)">&#10094;</button>
-  
-  <div class="slider-container" id="sliderContainer">
-    <div class="slider-track" id="sliderTrack">
-      <div class="card"><img src="assets/SE.jpg" alt="Stream Elite" /></div>
-      <div class="card"><img src="assets/dragon2025.jpg" alt="Dragon 2025" /></div>
-      <div class="card"><img src="assets/ponman.jpg" alt="Ponman" /></div>
-      <div class="card"><img src="assets/sikardar.jpg" alt="Sikandar" /></div>
-      <div class="card"><img src="assets/empuraan.jpg" alt="Empuraan" /></div>
+  <div class="slider-container">
+    <button class="arrow arrow-left">&#8249;</button>
+    <div class="slider-track" id="slider">
+      <div class="slider-card"><img src="img/movie1.jpg" alt="Movie 1" /></div>
+      <div class="slider-card"><img src="img/movie2.jpg" alt="Movie 2" /></div>
+      <div class="slider-card"><img src="img/movie3.jpg" alt="Movie 3" /></div>
+      <div class="slider-card"><img src="img/movie4.jpg" alt="Movie 4" /></div>
+      <div class="slider-card"><img src="img/movie5.jpg" alt="Movie 5" /></div>
     </div>
+    <button class="arrow arrow-right">&#8250;</button>
   </div>
-
-  <button class="nav right" onclick="scrollSlider(1)">&#10095;</button>
-  
-  <div class="pagination" id="paginationDots"></div>
-</div>
    <script src="slider.js"></script>
   <marquee>Developed by MrEldro</marquee>
   <center><a href="assets/movies"><button>Movies-2025</button></a></center>
