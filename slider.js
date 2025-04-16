@@ -1,32 +1,25 @@
-const slider = document.getElementById('slider');
-const leftBtn = document.querySelector('.arrow-left');
-const rightBtn = document.querySelector('.arrow-right');
-let scrollAmount = 0;
+const slider = document.getElementById("slider");
+const leftArrow = document.querySelector(".arrow.left");
+const rightArrow = document.querySelector(".arrow.right");
 
-const scrollStep = 220; // adjust based on card size + margin
+let scrollPosition = 0;
+const scrollAmount = slider.clientWidth;
 
-function scrollSlider(direction) {
-  if (direction === 'right') {
-    scrollAmount += scrollStep;
-    if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-      scrollAmount = 0; // loop to start
-    }
-  } else {
-    scrollAmount -= scrollStep;
-    if (scrollAmount < 0) {
-      scrollAmount = slider.scrollWidth - slider.clientWidth;
-    }
-  }
-  slider.scrollTo({
-    left: scrollAmount,
-    behavior: 'smooth'
-  });
-}
+rightArrow.addEventListener("click", () => {
+  scrollPosition += scrollAmount;
+  if (scrollPosition >= slider.scrollWidth) scrollPosition = 0;
+  slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
+});
 
-rightBtn.addEventListener('click', () => scrollSlider('right'));
-leftBtn.addEventListener('click', () => scrollSlider('left'));
+leftArrow.addEventListener("click", () => {
+  scrollPosition -= scrollAmount;
+  if (scrollPosition < 0) scrollPosition = slider.scrollWidth - scrollAmount;
+  slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
+});
 
-// autoplay
+// Autoplay every 3s
 setInterval(() => {
-  scrollSlider('right');
+  scrollPosition += scrollAmount;
+  if (scrollPosition >= slider.scrollWidth) scrollPosition = 0;
+  slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
 }, 3000);
