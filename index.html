@@ -3,24 +3,6 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream Elite - Home</title>
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-  <!-- Firebase Configuration -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
-      authDomain: "moviemafiaauth.firebaseapp.com",
-      projectId: "moviemafiaauth",
-      storageBucket: "moviemafiaauth.firebasestorage.app",
-      messagingSenderId: "405195689093",
-      appId: "1:405195689093:web:880a5e30c175597e51edec",
-      measurementId: "G-CY2PLKGR2V"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
   <!-- Styling -->
   <style>
     body {
@@ -112,44 +94,71 @@
     font-size: 12px;
   }
 }
-.slider-container {
-  overflow: hidden;
+.slider-wrapper {
+  position: relative;
   max-width: 100%;
   margin: 20px auto;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.slider-container {
+  overflow: hidden;
 }
 
 .slider-track {
   display: flex;
-  width: 500%;
-  animation: scroll 20s linear infinite;
+  transition: transform 0.5s ease-in-out;
 }
 
-.slider-track img {
+.card {
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 0 10px;
+}
+
+.card img {
   width: 100%;
-  flex-shrink: 0;
+  height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0%); }
-  20% { transform: translateX(0%); }
-  25% { transform: translateX(-100%); }
-  45% { transform: translateX(-100%); }
-  50% { transform: translateX(-200%); }
-  70% { transform: translateX(-200%); }
-  75% { transform: translateX(-300%); }
-  95% { transform: translateX(-300%); }
-  100% { transform: translateX(-400%); }
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 24px;
+  border-radius: 50%;
+}
+.nav.left { left: 10px; }
+.nav.right { right: 10px; }
+
+.pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+.pagination span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pagination span.active {
+  background: #333;
 }
 
 @media (max-width: 768px) {
-  .slider-track img {
-    height: auto;
-  }
+  .card { width: 150px; }
 }
-
   </style>
 </head>
 <body>
@@ -191,14 +200,22 @@
       });
   });
 </script>
-<br><br><div class="slider-container">
-  <div class="slider-track">
-    <img src="assets/SE.jpg" alt="Movie 1" />
-    <img src="assets/dragon2025.jpg" alt="Movie 2" />
-    <img src="assets/ponman.jpg" alt="Movie 3" />
-    <img src="assets/sikardar.jpg" alt="Movie 4" />
-    <img src="assets/empuraan.jpg" alt="Movie 5" />
+<div class="slider-wrapper">
+  <button class="nav left" onclick="scrollSlider(-1)">&#10094;</button>
+  
+  <div class="slider-container" id="sliderContainer">
+    <div class="slider-track" id="sliderTrack">
+      <div class="card"><img src="assets/SE.jpg" alt="Stream Elite" /></div>
+      <div class="card"><img src="assets/dragon2025.jpg" alt="Dragon 2025" /></div>
+      <div class="card"><img src="assets/ponman.jpg" alt="Ponman" /></div>
+      <div class="card"><img src="assets/sikardar.jpg" alt="Sikardar" /></div>
+      <div class="card"><img src="assets/empuraan.jpg" alt="Empuraan" /></div>
+    </div>
   </div>
+
+  <button class="nav right" onclick="scrollSlider(1)">&#10095;</button>
+  
+  <div class="pagination" id="paginationDots"></div>
 </div>
   <marquee>Developed by MrEldro</marquee>
   <center><a href="assets/movies"><button>Movie-2025</button></a></center>
