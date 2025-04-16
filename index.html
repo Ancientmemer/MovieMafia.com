@@ -35,24 +35,28 @@
     h1 {
       color: #333;
     }
-.top-bar {
+.logout-container {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  background: #333;
-  padding: 10px;
-  text-align: right;
+  bottom: 20px;
+  right: 20px;
 }
 
-.logout-btn {
-  background-color: #f44336;
+#logoutBtn {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 16px;
-  border-radius: 6px;
+  font-weight: bold;
+  border-radius: 50px;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#logoutBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
  .slider {
   width: 100%;
@@ -86,9 +90,9 @@
 </head>
 <body>
   
-  <div class="top-bar">
-  <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
+<div class="logout-container">
+  <button id="logoutBtn">Log Out</button>
+</div>
 
   <!-- Logout Script -->
   <script>
