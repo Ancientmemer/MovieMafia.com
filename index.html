@@ -112,55 +112,44 @@
     font-size: 12px;
   }
 }
- .slider {
- .carousel {
-  width: 90%;
-  max-width: 800px;
-  max-height: 400px;
+.slider-container {
   overflow: hidden;
-  position: relative;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  max-width: 100%;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
-.slides {
+.slider-track {
   display: flex;
-  width: 500%; /* 5 images = 500% */
-  animation: slide 25s infinite ease-in-out;
+  width: 500%;
+  animation: scroll 20s linear infinite;
 }
 
-.slides img {
+.slider-track img {
   width: 100%;
-  height: auto;
+  flex-shrink: 0;
   object-fit: cover;
 }
 
-/* Animation */
-@keyframes slide {
-  0%    { transform: translateX(0); }
-  20%   { transform: translateX(0); }
-  25%   { transform: translateX(-100%); }
-  40%   { transform: translateX(-100%); }
-  45%   { transform: translateX(-200%); }
-  60%   { transform: translateX(-200%); }
-  65%   { transform: translateX(-300%); }
-  80%   { transform: translateX(-300%); }
-  85%   { transform: translateX(-400%); }
-  100%  { transform: translateX(-400%); }
+@keyframes scroll {
+  0% { transform: translateX(0%); }
+  20% { transform: translateX(0%); }
+  25% { transform: translateX(-100%); }
+  45% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  70% { transform: translateX(-200%); }
+  75% { transform: translateX(-300%); }
+  95% { transform: translateX(-300%); }
+  100% { transform: translateX(-400%); }
 }
 
-/* Responsive height */
 @media (max-width: 768px) {
-  .carousel {
-    max-height: 250px;
+  .slider-track img {
+    height: auto;
   }
 }
 
-@media (max-width: 480px) {
-  .carousel {
-    max-height: 180px;
-  }
-}
   </style>
 </head>
 <body>
@@ -202,15 +191,15 @@
       });
   });
 </script>
-    <div class="carousel">
-    <div class="slides">
-      <img src="assets/SE.jpg" alt="Slide 1">
-      <img src="assets/dragon2025.jpg" alt="Slide 2">
-      <img src="assets/ponman.jpg" alt="Slide 3">
-      <img src="assets/sikandar.jpg" alt="Slide 4">
-      <img src="assets/empuraan.jpg" alt="Slide 5">
-    </div>
-    </div>
+<br><br><div class="slider-container">
+  <div class="slider-track">
+    <img src="images/1.jpg" alt="Movie 1" />
+    <img src="images/2.jpg" alt="Movie 2" />
+    <img src="images/3.jpg" alt="Movie 3" />
+    <img src="images/4.jpg" alt="Movie 4" />
+    <img src="images/5.jpg" alt="Movie 5" />
+  </div>
+</div>
   <marquee>Developed by MrEldro</marquee>
   <center><a href="assets/movies"><button>Movie-2025</button></a></center>
 <center><i>This site is under maintainance work.</i></center>
