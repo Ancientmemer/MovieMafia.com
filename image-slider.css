@@ -28,6 +28,7 @@ body {
 
 .card {
   min-width: 100%;
+  top: 25%;
   scroll-snap-align: start;
   transition: transform 0.3s ease;
 }
@@ -41,7 +42,7 @@ body {
 
 .arrow {
   position: absolute;
-  top: 35%;
+  top: 50%;
   transform: translateY(-50%);
   font-size: 40px;
   background: rgba(0,0,0,0.6);
@@ -55,10 +56,8 @@ body {
 
 .arrow.left {
   left: 10px;
-  top: 50%;
 }
 
 .arrow.right {
   right: 10px;
-  top: 50%;
 }
