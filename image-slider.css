@@ -7,14 +7,12 @@
 body {
   background: #111;
   display: flex;
-  justify-content: left;
-  align-items: left;
   min-height: 100vh;
 }
 
 .slider-wrapper {
   position: relative;
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
   overflow: hidden;
 }
@@ -43,7 +41,7 @@ body {
 
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 20%;
   transform: translateY(-50%);
   font-size: 40px;
   background: rgba(0,0,0,0.6);
@@ -52,7 +50,7 @@ body {
   padding: 10px;
   cursor: pointer;
   z-index: 100;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 
 .arrow.left {
