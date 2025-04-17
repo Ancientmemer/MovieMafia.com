@@ -7,8 +7,8 @@
 body {
   background: #111;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   min-height: 100vh;
 }
 
