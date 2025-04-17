@@ -10,6 +10,14 @@ body {
   min-height: 100vh;
 }
 
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  background-color: #000; /* Optional: makes gaps look better */
+}
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -25,15 +33,6 @@ body {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 10px;
-  background-color: #000; /* Optional: makes gaps look better */
-}
-
 .card {
   min-width: 100%;
   scroll-snap-align: start;
