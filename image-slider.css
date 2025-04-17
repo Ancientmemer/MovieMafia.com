@@ -41,7 +41,7 @@ body {
 
 .arrow {
   position: absolute;
-  top: 20%;
+  top: 35%;
   transform: translateY(-50%);
   font-size: 40px;
   background: rgba(0,0,0,0.6);
@@ -55,8 +55,10 @@ body {
 
 .arrow.left {
   left: 10px;
+  top: 50%;
 }
 
 .arrow.right {
   right: 10px;
+  top: 50%;
 }
