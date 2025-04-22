@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream Elite - Home</title>
   <link rel="stylesheet" href="image-slider.css" />
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+    apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
+    authDomain: "moviemafiaauth.firebaseapp.com",
+    projectId: "moviemafiaauth",
+    storageBucket: "moviemafiaauth.appspot.com",
+    messagingSenderId: "405195689093",
+    appId: "1:405195689093:web:880a5e30c175597e51edec"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // Not logged in
+        window.location.href = "login.html";
+      }
+    });
+    </script>
   <!-- Styling -->
   <style>
     body {
@@ -109,34 +132,17 @@
   </div>
 </nav>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  <script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
-    authDomain: "moviemafiaauth.firebaseapp.com",
-    projectId: "moviemafiaauth",
-    storageBucket: "moviemafiaauth.appspot.com",
-    messagingSenderId: "405195689093",
-    appId: "1:405195689093:web:880a5e30c175597e51edec",
-    measurementId: "G-CY2PLKGR2V"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    signOut(auth)
-      .then(() => {
-        alert("Logged out!");
+    const auth = getAuth();
+    window.logout = function () {
+      signOut(auth).then(() => {
         window.location.href = "login.html";
-      })
-      .catch((error) => {
-        alert("Logout error: " + error.message);
       });
-  });
-</script>
+    };
+  </script>
+  
  <div class="slider-wrapper">
     <button class="arrow left">&#10094;</button>
 
