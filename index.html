@@ -5,32 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream Elite - Home</title>
   <link rel="stylesheet" href="image-slider.css" />
-    <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-
-    const firebaseConfig = {
-    apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
-    authDomain: "moviemafiaauth.firebaseapp.com",
-    projectId: "moviemafiaauth",
-    appId: "1:405195689093:web:880a5e30c175597e51edec"
-    };
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Attach logout function to global scope
-window.logout = function () {
-  signOut(auth)
-    .then(() => {
-      alert("Logged out successfully!");
-      window.location.href = "login.html"; // redirect to login page
-    })
-    .catch((error) => {
-      console.error("Logout error:", error);
-    });
-};
-    </script>
   <!-- Styling -->
   <style>
     body {
@@ -135,15 +109,39 @@ window.logout = function () {
   </div>
 </nav>
 
-  <script type="module">
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "login.html"; // redirect to login if not logged in
-  }
-});
-  </script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
+    authDomain: "moviemafiaauth.firebaseapp.com",
+    projectId: "moviemafiaauth",
+    appId: "1:405195689093:web:880a5e30c175597e51edec"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // If user not logged in, redirect to login
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
+
+  // Logout function
+  window.logout = function () {
+    signOut(auth)
+      .then(() => {
+        alert("Logged out successfully!");
+        window.location.href = "login.html";
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  };
+        </script>
   
  <div class="slider-wrapper">
     <button class="arrow left">&#10094;</button>
