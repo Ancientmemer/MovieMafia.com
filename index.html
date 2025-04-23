@@ -13,20 +13,23 @@
     apiKey: "AIzaSyD26r-TDOsvamPDejGENknSMDzsfNXKWLk",
     authDomain: "moviemafiaauth.firebaseapp.com",
     projectId: "moviemafiaauth",
-    storageBucket: "moviemafiaauth.appspot.com",
-    messagingSenderId: "405195689093",
     appId: "1:405195689093:web:880a5e30c175597e51edec"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        // Not logged in
-        window.location.href = "login.html";
-      }
+// Attach logout function to global scope
+window.logout = function () {
+  signOut(auth)
+    .then(() => {
+      alert("Logged out successfully!");
+      window.location.href = "login.html"; // redirect to login page
+    })
+    .catch((error) => {
+      console.error("Logout error:", error);
     });
+};
     </script>
   <!-- Styling -->
   <style>
@@ -133,14 +136,13 @@
 </nav>
 
   <script type="module">
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-    const auth = getAuth();
-    window.logout = function () {
-      signOut(auth).then(() => {
-        window.location.href = "login.html";
-      });
-    };
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html"; // redirect to login if not logged in
+  }
+});
   </script>
   
  <div class="slider-wrapper">
@@ -148,10 +150,10 @@
 
     <div class="slider-track" id="slider">
       <div class="card"><img src="assets/SE2.jpg" alt="Movie 1" /></div>
-      <div class="card"><img src="assets/drag.jpg" alt="Movie 2" /></div>
+      <div class="card"><img src="assets/L2E.jpg" alt="Movie 2" /></div>
       <div class="card"><img src="assets/ponman2025.jpg" alt="Movie 3" /></div>
       <div class="card"><img src="assets/sikandar2025.jpg" alt="Movie 4" /></div>
-      <div class="card"><img src="assets/L2E.jpg" alt="Movie 5" /></div>
+      <div class="card"><img src="assets/drag.jpg" alt="Movie 5" /></div>
     </div>
 
     <button class="arrow right">&#10095;</button>
