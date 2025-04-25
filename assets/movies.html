@@ -6,56 +6,51 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>SE|Movies-2025</title>
   <style>
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #121212;
-  color: white;
-  margin: 0;
-  padding: 20px;
-}
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #101010;
+      color: white;
+      padding: 20px;
+    }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
+    .search-bar {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      display: flex;
+    }
 
-h1 {
-  color: #00bcd4;
-  margin-bottom: 20px;
-}
+    .search-bar input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #1f1f1f;
+      color: white;
+      box-shadow: 0 0 5px cyan;
+    }
 
-#searchInput {
-  width: 100%;
-  padding: 12px 16px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  outline: none;
-  background-color: #222;
-  color: white;
-  box-shadow: 0 0 5px rgba(0,255,255,0.2);
-}
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-.movie-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    .section {
+      background: #222;
+      padding: 15px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
 
-.movie-item {
-  background: #1f1f1f;
-  padding: 14px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,255,255,0.1);
-  transition: transform 0.2s ease;
-}
+    .section h3 {
+      margin: 0 0 5px;
+      color: #00ffd5;
+    }
 
-.movie-item:hover {
-  transform: scale(1.03);
-  background: #333;
-}
+    .section p {
+      margin: 0;
+    }
     .movie-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -79,24 +74,42 @@ h1 {
 </style>
 </head>
   <body>
-      <div class="container">
-    <h1>Stream Elite</h1>
-    <input type="text" id="searchInput" placeholder="Search movies..." />
-    <div class="movie-list">
-    </div>
-      </div>
-    <script>
-      const input = document.getElementById("searchInput");
-const items = document.querySelectorAll(".movie-item");
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search the page content...">
+  </div>
 
-input.addEventListener("input", () => {
-  const query = input.value.toLowerCase();
-  items.forEach(item => {
-    const match = item.textContent.toLowerCase().includes(query);
-    item.style.display = match ? "block" : "none";
-  });
-});
-    </script>
+  <div class="content" id="pageContent">
+    <div class="section">
+      <h3>Leo (2023)</h3>
+      <p>Action Thriller movie starring Vijay</p>
+    </div>
+    <div class="section">
+      <h3>Salaar (2024)</h3>
+      <p>Power-packed action film with Prabhas</p>
+    </div>
+    <div class="section">
+      <h3>Jawan (2023)</h3>
+      <p>SRK's blockbuster thriller</p>
+    </div>
+    <div class="section">
+      <h3>Kantara (2022)</h3>
+      <p>A movie that blends folklore and faith</p>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const sections = document.querySelectorAll(".section");
+
+    searchInput.addEventListener("keyup", function () {
+      const term = this.value.toLowerCase();
+      sections.forEach(sec => {
+        const text = sec.textContent.toLowerCase();
+        sec.style.display = text.includes(term) ? "block" : "none";
+      });
+    });
+  </script>
+    
     <br><center><h3><b>NAME: </b><i>L2 EMPURAAN</i><br><b>YEAR: </b><i>2025</i><br><b>LANG: </b><i>MALAYALAM</i><br></h3></center>
     <center>
     <a href="https://www.tgxdl1.workers.dev/v3/0:/dl/231233?hash=AgADpR" class="movie-btn">300MB</a>
